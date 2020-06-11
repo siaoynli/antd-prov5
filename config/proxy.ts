@@ -22,7 +22,7 @@ export default {
   },
   pre: {
     '/api/': {
-      target: 'http://127.0.0.1:8000',
+      target: 'http://laravel-antd.test',
       changeOrigin: true,
       pathRewrite: { '^': '' },
     },
