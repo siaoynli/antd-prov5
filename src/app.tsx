@@ -8,13 +8,14 @@ import Footer from '@/components/Footer';
 import { queryCurrent } from './services/user';
 
 import defaultSettings from '../config/defaultSettings';
+import { version, timeout } from './utils/constants';
 
 export async function getInitialState(): Promise<{
   currentUser?: API.CurrentUser;
   settings?: LayoutSettings;
 }> {
-  // 如果是登录页面，不执行
   if (history.location.pathname !== '/user/login') {
+    // 如果是登录页面，不执行
     try {
       const currentUser = await queryCurrent();
       return {
@@ -87,6 +88,14 @@ const errorHandler = (error: { response: Response }) => {
   throw error;
 };
 
+//request 统一处理接口
 export const request: RequestConfig = {
   errorHandler,
+  prefix: '/api/' + version,
+  responseType: 'json',
+  timeout: timeout,
+  requestType: 'json', // json| form
+  headers: {
+    Authorization: 'Bearer 123454566',
+  },
 };

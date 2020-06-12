@@ -32,4 +32,11 @@ declare namespace API {
     extra: any;
     status: string;
   }
+
+  export interface SystemInfo {
+    status: number;
+    data: {
+      site_name: string;
+    }[];
+  }
 }

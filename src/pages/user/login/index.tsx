@@ -1,4 +1,3 @@
-import { AlipayCircleOutlined, TaobaoCircleOutlined, WeiboCircleOutlined } from '@ant-design/icons';
 import { Alert, Checkbox, message } from 'antd';
 import React, { useState } from 'react';
 import { Link, SelectLang, history, useModel } from 'umi';
@@ -49,7 +48,9 @@ const Login: React.FC<{}> = () => {
   const [userLoginState, setUserLoginState] = useState<API.LoginStateType>({});
   const [submitting, setSubmitting] = useState(false);
 
+  console.log('model:', useModel('@@initialState'));
   const { refresh } = useModel('@@initialState');
+
   const [autoLogin, setAutoLogin] = useState(true);
   const [type, setType] = useState<string>('account');
 
@@ -101,7 +102,7 @@ const Login: React.FC<{}> = () => {
 
               <Username
                 name="username"
-                placeholder="用户名: admin or user"
+                placeholder="请输入用户名"
                 rules={[
                   {
                     required: true,
@@ -111,7 +112,7 @@ const Login: React.FC<{}> = () => {
               />
               <Password
                 name="password"
-                placeholder="密码: 123456"
+                placeholder="请输入密码"
                 rules={[
                   {
                     required: true,
@@ -165,15 +166,6 @@ const Login: React.FC<{}> = () => {
               </a>
             </div>
             <Submit loading={submitting}>登录</Submit>
-            <div className={styles.other}>
-              其他登录方式
-              <AlipayCircleOutlined className={styles.icon} />
-              <TaobaoCircleOutlined className={styles.icon} />
-              <WeiboCircleOutlined className={styles.icon} />
-              <Link className={styles.register} to="/user/register">
-                注册账户
-              </Link>
-            </div>
           </LoginFrom>
         </div>
       </div>
