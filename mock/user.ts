@@ -20,7 +20,7 @@ const getAccess = () => {
 // 代码中会兼容本地 service mock 以及部署站点的静态数据
 export default {
   // 支持值为 Object 和 Array
-  'GET /api/currentUser': (req: Request, res: Response) => {
+  'GET /api/v1/currentUser': (req: Request, res: Response) => {
     if (!getAccess()) {
       res.status(401).send({
         data: {
@@ -85,7 +85,7 @@ export default {
     });
   },
   // GET POST 可省略
-  'GET /api/users': [
+  'GET /api/v1/users': [
     {
       key: '1',
       name: 'John Brown',
@@ -105,7 +105,7 @@ export default {
       address: 'Sidney No. 1 Lake Park',
     },
   ],
-  'POST /api/login/account': (req: Request, res: Response) => {
+  'POST /api/v1/login/account': (req: Request, res: Response) => {
     const { password, username, type } = req.body;
     if (password === '123456' && username === 'admin') {
       res.send({
@@ -141,14 +141,14 @@ export default {
     });
     access = 'guest';
   },
-  'GET /api/login/outLogin': (req: Request, res: Response) => {
+  'GET /api/v1/login/outLogin': (req: Request, res: Response) => {
     access = '';
     res.send({ data: {}, success: true });
   },
-  'POST /api/register': (req: Request, res: Response) => {
+  'POST /api/v1/register': (req: Request, res: Response) => {
     res.send({ status: 'ok', currentAuthority: 'user', success: true });
   },
-  'GET /api/500': (req: Request, res: Response) => {
+  'GET /api/v1/500': (req: Request, res: Response) => {
     res.status(500).send({
       timestamp: 1513932555104,
       status: 500,
@@ -157,7 +157,7 @@ export default {
       path: '/base/category/list',
     });
   },
-  'GET /api/404': (req: Request, res: Response) => {
+  'GET /api/v1/404': (req: Request, res: Response) => {
     res.status(404).send({
       timestamp: 1513932643431,
       status: 404,
@@ -166,7 +166,7 @@ export default {
       path: '/base/category/list/2121212',
     });
   },
-  'GET /api/403': (req: Request, res: Response) => {
+  'GET /api/v1/403': (req: Request, res: Response) => {
     res.status(403).send({
       timestamp: 1513932555104,
       status: 403,
@@ -175,7 +175,7 @@ export default {
       path: '/base/category/list',
     });
   },
-  'GET /api/401': (req: Request, res: Response) => {
+  'GET /api/v1/401': (req: Request, res: Response) => {
     res.status(401).send({
       timestamp: 1513932555104,
       status: 401,
@@ -185,5 +185,5 @@ export default {
     });
   },
 
-  'GET  /api/login/captcha': getFakeCaptcha,
+  'GET  /api/v1/login/captcha': getFakeCaptcha,
 };
