@@ -4,7 +4,7 @@
  * @Github: http://github.com/siaoynli
  * @Date: 2020-06-12 09:47:20
  * @LastEditors: lixiaoyun
- * @LastEditTime: 2020-06-12 09:48:16
+ * @LastEditTime: 2020-06-12 16:47:26
  * @Description:
  */
 
@@ -17,6 +17,17 @@ export const routes = [
         name: 'login',
         path: '/user/login',
         component: './user/login',
+      },
+    ],
+  },
+  {
+    path: '/admin',
+    layout: false,
+    routes: [
+      {
+        name: 'login',
+        path: '/admin/login',
+        component: './admin/login',
       },
     ],
   },

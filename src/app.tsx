@@ -5,7 +5,7 @@ import { notification } from 'antd';
 import { history, RequestConfig } from 'umi';
 import RightContent from '@/components/RightContent';
 import Footer from '@/components/Footer';
-import { queryCurrent } from './services/user';
+import { queryCurrent } from './services/admin';
 
 import defaultSettings from '../config/defaultSettings';
 import { version, timeout } from './utils/constants';
@@ -14,16 +14,17 @@ export async function getInitialState(): Promise<{
   currentUser?: API.CurrentUser;
   settings?: LayoutSettings;
 }> {
-  if (history.location.pathname !== '/user/login') {
+  if (history.location.pathname !== '/admin/login') {
     // 如果是登录页面，不执行
     try {
+      //获取登录就用户信息
       const currentUser = await queryCurrent();
       return {
         currentUser,
         settings: defaultSettings,
       };
     } catch (error) {
-      history.push('/user/login');
+      history.push('/admin/login');
     }
   }
   return {
